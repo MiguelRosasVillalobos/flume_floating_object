@@ -18,7 +18,7 @@ inlet
 {
     alpha           alpha.water;
 
-    waveModel       StokesII;
+    waveModel       StokesV;
 
     nPaddle         2;
 
