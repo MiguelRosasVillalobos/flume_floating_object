@@ -20,13 +20,13 @@ inlet
 
     waveModel       StokesV;
 
-    nPaddle         2;
+    nPaddle         1;
 
     waveHeight      0.1;
 
     waveAngle       0.0;
 
-    rampTime        2.0;
+    rampTime        2.5;
 
     activeAbsorption yes;
 
@@ -39,7 +39,7 @@ outlet
 
     waveModel       shallowWaterAbsorption;
 
-    nPaddle         2;
+    nPaddle         1;
 }
 
 
