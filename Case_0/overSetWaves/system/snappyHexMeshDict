@@ -21,7 +21,7 @@ addLayers       false;
 
 geometry
 {
-    Pieza3.stl
+    body.stl
     {
         type triSurfaceMesh;
         name floatingObject;

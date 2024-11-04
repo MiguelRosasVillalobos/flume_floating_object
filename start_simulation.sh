@@ -29,8 +29,17 @@ for ((i = 1; i <= $cantidad; i++)); do
   # sed -i "s/\$nn/$n/g" "$nombre_carpeta/constant/porosityProperties"
   # sed -i "s/\$nn/$n/g" "$nombre_carpeta/system/setFieldsDict"
 
-  cd "$nombre_carpeta/background"
+  cp ./geometry/body.stl ./$nombre_carpeta/overSetWaves/constant/triSurface
+  cd "$nombre_carpeta/overSetWaves"
+  blockMesh
+  snappyHexMesh -overwrite
+  cd ..
 
+  cd ./background
+  blockMesh
+  mergeMeshes . ../overSetWaves/ -overwrite
+  topoSet
+  setFields
   decomposePar
   mpirun -np 6 overInterDyMFoam -parallel >log
   cd ../..
