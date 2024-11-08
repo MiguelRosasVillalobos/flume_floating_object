@@ -31,16 +31,16 @@ for ((i = 1; i <= $cantidad; i++)); do
 
   cp ./geometry/body.stl ./$nombre_carpeta/overSetWaves/constant/triSurface
   cd "$nombre_carpeta/overSetWaves"
-  blockMesh
-  snappyHexMesh -overwrite
+  blockMesh >blockMesh.log
+  snappyHexMesh -overwrite >snappyHexMesh.log
   cd ..
 
   cd ./background
-  blockMesh
-  mergeMeshes . ../overSetWaves/ -overwrite
-  topoSet
-  setFields
-  decomposePar
+  blockMesh >blockMesh.log
+  mergeMeshes . ../overSetWaves/ -overwrite >mergeMeshes.log
+  topoSet >topoSet.log
+  setFields >setFields.log
+  decomposePar >decomposePar.log
   mpirun -np 6 overInterDyMFoam -parallel >log
   cd ../..
 done
