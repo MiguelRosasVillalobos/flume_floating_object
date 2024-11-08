@@ -16,21 +16,30 @@ FoamFile
 
 scale   1;
 
+l 2;
+hw 0.45;
+wt 0.3;
+H 0.05;
+
+nx 300;
+ny 50;
+nz 50;
+
 vertices
 (
-    (-5   -0.8  -0.7)   // Vertice 0: extremo inferior izquierdo trasero
-    ( 5   -0.8  -0.7)   // Vertice 1: extremo inferior derecho trasero
-    ( 5    1.8  -0.7)   // Vertice 2: extremo inferior derecho delantero
-    (-5    1.8  -0.7)   // Vertice 3: extremo inferior izquierdo delantero
-    (-5   -0.8   1.3)   // Vertice 4: extremo superior izquierdo trasero
-    ( 5   -0.8   1.3)   // Vertice 5: extremo superior derecho trasero
-    ( 5    1.8   1.3)   // Vertice 6: extremo superior derecho delantero
-    (-5    1.8   1.3)   // Vertice 7: extremo superior izquierdo delantero
+    (#eval{-$l/2} #eval{-$wt/2} 0)   // 0
+    (#eval{$l/2} #eval{-$wt/2} 0)   // 1
+    (#eval{$l/2} #eval{-$wt/2} $hw)   // 2
+    (#eval{-$l/2} #eval{-$wt/2} $hw)   // 3
+    (#eval{-$l/2} #eval{$wt/2} 0)   // 4
+    (#eval{$l/2} #eval{$wt/2} 0)   // 5
+    (#eval{$l/2} #eval{$wt/2} $hw)   // 6
+    (#eval{-$l/2} #eval{$wt/2} $hw)   // 7
 );
 
 blocks
 (
-    hex (0 1 2 3 4 5 6 7) (300 60 50) simpleGrading (1 1 1)
+    hex (0 3 2 1 4 7 6 5) ($nz $nx $ny) simpleGrading (1 1 1)
 );
 
 edges
@@ -66,7 +75,7 @@ boundary
         type wall;
         faces
         (
-           (0 1 2 3)
+           (0 1 5 4)
         );
      }
      atmosphere
@@ -74,7 +83,7 @@ boundary
         type patch;
         faces
         (
-            (4 5 6 7)
+           (2 3 6 7)
         );
      }
      walls
@@ -82,8 +91,8 @@ boundary
         type patch;
         faces
         (
-            (0 1 5 4)
-            (3 2 6 7)
+            (0 1 2 3)
+            (4 5 6 7)
         );
      }
 );
