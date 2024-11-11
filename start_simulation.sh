@@ -29,6 +29,9 @@ for ((i = 1; i <= $cantidad; i++)); do
   # sed -i "s/\$nn/$n/g" "$nombre_carpeta/constant/porosityProperties"
   # sed -i "s/\$nn/$n/g" "$nombre_carpeta/system/setFieldsDict"
 
+  mkdir ./$nombre_carpeta/overSetWaves/constant
+  mkdir ./$nombre_carpeta/overSetWaves/constant/triSurface
+
   cp ./geometry/body.stl ./$nombre_carpeta/overSetWaves/constant/triSurface
   cd "$nombre_carpeta/overSetWaves"
   blockMesh >blockMesh.log
